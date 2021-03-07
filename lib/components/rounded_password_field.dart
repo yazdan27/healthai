@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:healthai/components/text_field_container.dart';
 import 'package:healthai/constants.dart';
 
+TextEditingController passwordController = new TextEditingController();
+
+
 class RoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
@@ -27,6 +30,7 @@ class RoundedPasswordField extends StatelessWidget {
             color: kPrimaryColor,
           ),
           border: InputBorder.none,
+
         ),
       ),
     );
