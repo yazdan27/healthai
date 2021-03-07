@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthai/Screens/Login/login_screen.dart';
 import 'package:healthai/Screens/Signup/components/background.dart';
-import 'package:healthai/Screens/Signup/components/or_divider.dart';
-import 'package:healthai/Screens/Signup/components/social_icon.dart';
 import 'package:healthai/components/already_have_an_account_acheck.dart';
 import 'package:healthai/components/rounded_button.dart';
 import 'package:healthai/components/rounded_input_field.dart';
