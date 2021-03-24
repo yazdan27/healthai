@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthai/Screens/Home/home_screen.dart';
 import 'package:healthai/Screens/Login/components/background.dart';
 import 'package:healthai/Screens/Signup/signup_screen.dart';
+import 'package:healthai/services/auth.dart';
 import 'package:healthai/authentication_service.dart';
 import 'package:healthai/components/already_have_an_account_acheck.dart';
 import 'package:healthai/components/rounded_button.dart';
@@ -10,16 +11,22 @@ import 'package:healthai/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-final TextEditingController emailController = new TextEditingController();
-final TextEditingController passwordController = new TextEditingController();
+import '../../../main.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({
     Key key,
   }) : super(key: key);
 
+  @override
+  _BodyState createState() => _BodyState();
+}
 
-
+class _BodyState extends State<Body> {
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+  AuthService _auth = AuthService();
+  String _error = '';
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -39,18 +46,33 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
+              ctrl: emailController,
               hintText: "Your Email",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
+              ctrl: passwordController,
               onChanged: (value) {},
             ),
             RoundedButton(
-              press: () {
-                context.read<AuthenticationService>().signIn(
-                    email: emailController.text.trim(),
-                    password: passwordController.text.trim()
-                );
+              press: () async {
+                var result = await _auth.signInWithEmailandPassword(
+                    emailController.text, passwordController.text);
+                if (result is String) {
+                  setState(() {
+                    _error = result;
+                  });
+                } else {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              AuthenticationWrapper()),
+                      (route) => false);
+                }
+
+                print(emailController.text);
+                print(passwordController.text);
               },
               text: "LOGIN",
             ),

@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthai/Screens/Home/home_screen.dart';
 import 'package:healthai/Screens/Welcome/welcome_screen.dart';
+import 'package:healthai/services/auth.dart';
 import 'package:healthai/authentication_service.dart';
 import 'package:healthai/constants.dart';
+import 'package:healthai/services/global.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -19,13 +21,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<AuthenticationService>(
-            create: (_) => AuthenticationService(FirebaseAuth.instance),
-        ),
-        StreamProvider(
-          create: (context) => context.read<AuthenticationService>().authStateChanges,
-          initialData: null,
-        ),
+        // Provider<AuthService>(
+        //   create: (_) => AuthService(FirebaseAuth.instance),
+        // ),
+        // StreamProvider(
+        //   create: (context) => context.read<AuthService>().authStateChanges,
+        //   initialData: null,
+        // ),
+        StreamProvider<User>.value(value: AuthService().user),
+        // StreamProvider<User>.value(value: Global.profileRef.documentStream),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -40,18 +44,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AuthenticationWrapper extends StatelessWidget {
-  const AuthenticationWrapper ({
+class AuthenticationWrapper extends StatefulWidget {
+  const AuthenticationWrapper({
     Key key,
-}) : super (key: key);
+  }) : super(key: key);
 
+  @override
+  _AuthenticationWrapperState createState() => _AuthenticationWrapperState();
+}
+
+class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
-
-    if (firebaseUser == null) {
-      return WelcomeScreen();
-    }
-    return HomeScreen();
+    var user = Provider.of<User>(context);
+    return user == null ? WelcomeScreen() : HomeScreen();
   }
 }

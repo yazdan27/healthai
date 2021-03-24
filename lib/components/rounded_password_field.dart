@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:healthai/components/text_field_container.dart';
 import 'package:healthai/constants.dart';
 
-
 class RoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
+  final TextEditingController ctrl;
   const RoundedPasswordField({
     Key key,
     this.onChanged,
+    this.ctrl,
   }) : super(key: key);
 
   @override
@@ -15,6 +16,7 @@ class RoundedPasswordField extends StatelessWidget {
     return TextFieldContainer(
       child: TextField(
         obscureText: true,
+        controller: ctrl,
         onChanged: onChanged,
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
@@ -28,7 +30,6 @@ class RoundedPasswordField extends StatelessWidget {
             color: kPrimaryColor,
           ),
           border: InputBorder.none,
-
         ),
       ),
     );
