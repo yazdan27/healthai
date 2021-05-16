@@ -8,6 +8,8 @@ import 'package:healthai/authentication_service.dart';
 import 'package:healthai/constants.dart';
 import 'package:healthai/services/global.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
