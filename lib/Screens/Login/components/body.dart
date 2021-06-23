@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:healthai/Screens/Home/home_screen.dart';
 import 'package:healthai/Screens/Login/components/background.dart';
 import 'package:healthai/Screens/Signup/signup_screen.dart';
 import 'package:healthai/services/auth.dart';
-import 'package:healthai/authentication_service.dart';
 import 'package:healthai/components/already_have_an_account_acheck.dart';
 import 'package:healthai/components/rounded_button.dart';
 import 'package:healthai/components/rounded_input_field.dart';
 import 'package:healthai/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
 import '../../../main.dart';
 
@@ -26,7 +23,7 @@ class _BodyState extends State<Body> {
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
   AuthService _auth = AuthService();
-  String _error = '';
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

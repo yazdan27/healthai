@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:healthai/Screens/BMI-Insert/BMI_screen.dart';
+import 'package:healthai/Screens/BMR/BMR_screen.dart';
 import 'package:healthai/constants.dart';
 import 'package:healthai/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) {
-                      return BMI();
+                      return BMR();
                     }),
                   ); //push
                 })

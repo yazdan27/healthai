@@ -27,7 +27,6 @@ class AuthService {
       return null;
     }
   }
-
   //
   Future signUpWithEmailandPassword(String email, String password) async {
     print(email);
@@ -44,58 +43,7 @@ class AuthService {
     }
   }
 
-  // Future signInWithGoogle() async {
-  //   try {
-  //     User user;
-  //
-  //     final GoogleSignInAccount account = await _googleSignIn.signIn();
-  //
-  //     final GoogleSignInAuthentication googleAuth =
-  //         await account.authentication;
-  //
-  //     final AuthCredential credential = GoogleAuthProvider.credential(
-  //       accessToken: googleAuth.accessToken,
-  //       idToken: googleAuth.idToken,
-  //     );
-  //
-  //     final UserCredential userCredentials =
-  //         await _auth.signInWithCredential(credential);
-  //
-  //     user = userCredentials.user;
-  //     return user;
-  //   } catch (e) {
-  //     print(e.toString());
-  //     return null;
-  //   }
-  // }
 
-  // Future<User> signUpWithGoogle() async {
-  //   try {
-  //     GoogleSignInAccount account = await _googleSignIn.signIn();
-  //     GoogleSignInAuthentication googleAuth = await account.authentication;
-  //     final AuthCredential credential = GoogleAuthProvider.credential(
-  //         accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-  //
-  //     UserCredential result = await _auth.signInWithCredential(credential);
-  //     User user = result.user;
-  //
-  //     var profile = await _db.collection('profiles').doc(user.uid).get();
-  //
-  //     print(profile);
-  //     if (profile.data() == null) {
-  //       print('DOEST EXIST');
-  //       await _db.collection('profiles').doc(user.uid).set({
-  //         'fullName': user.displayName,
-  //         'avatar': user.photoURL,
-  //       });
-  //     }
-  //
-  //     return user;
-  //   } catch (error) {
-  //     print(error.toString());
-  //     return null;
-  //   }
-  // }
 
   Future signOut() async {
     try {

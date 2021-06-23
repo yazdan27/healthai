@@ -1,14 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:healthai/Screens/Home/home_screen.dart';
 import 'package:healthai/Screens/Welcome/welcome_screen.dart';
 import 'package:healthai/services/auth.dart';
-import 'package:healthai/authentication_service.dart';
 import 'package:healthai/constants.dart';
-import 'package:healthai/services/global.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:healthai/Screens/search_screen.dart';
 
 
 Future<void> main() async {
@@ -60,6 +57,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
     var user = Provider.of<User>(context);
-    return user == null ? WelcomeScreen() : HomeScreen();
+    //return user == null ? WelcomeScreen() : HomeScreen();
+    return user == null ? WelcomeScreen() : SearchScreen();
   }
 }
